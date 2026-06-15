@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: futurology
+      POSTGRES_USER: futurology_user
+      POSTGRES_PASSWORD: futurology_password
+    ports: ["5432:5432"]
+
+  backend:
+    build: ./backend
+    ports: ["8000:8000"]
+    env_file: ./backend/.env
+    depends_on: [postgres]
